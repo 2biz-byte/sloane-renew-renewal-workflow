@@ -1,5 +1,6 @@
 {
-  "actionId": "6a90198a9334d064acf7c5de",
+  "schemaVersion": 2,
+  "resourceKey": "workflow.sloane.renew-a-household-service-personal",
   "structure": {
     "name": "Renew a household service (personal)",
     "actionName": "Renew a household service (personal)",
@@ -49,7 +50,7 @@
                   "requiresApproval": true,
                   "execution": {
                     "type": "pipeline_transition",
-                    "pipelineId": "pl_e13390d8fa6d",
+                    "pipelineRef": { "kind": "pipeline", "resourceKey": "pipeline.sloane.service-renewal-workflow" },
                     "transitionId": "to_contract_read",
                     "expectedFromStageId": "intake",
                     "expectedToStageId": "contract_read",
@@ -103,7 +104,7 @@
                   "requiresApproval": true,
                   "execution": {
                     "type": "pipeline_transition",
-                    "pipelineId": "pl_e13390d8fa6d",
+                    "pipelineRef": { "kind": "pipeline", "resourceKey": "pipeline.sloane.service-renewal-workflow" },
                     "transitionId": "to_usage_summarized",
                     "expectedFromStageId": "contract_read",
                     "expectedToStageId": "usage_summarized",
@@ -157,7 +158,7 @@
                   "requiresApproval": true,
                   "execution": {
                     "type": "pipeline_transition",
-                    "pipelineId": "pl_e13390d8fa6d",
+                    "pipelineRef": { "kind": "pipeline", "resourceKey": "pipeline.sloane.service-renewal-workflow" },
                     "transitionId": "to_draft_ready",
                     "expectedFromStageId": "usage_summarized",
                     "expectedToStageId": "draft_ready",
@@ -192,7 +193,7 @@
                   "requiresApproval": true,
                   "execution": {
                     "type": "pipeline_transition",
-                    "pipelineId": "pl_e13390d8fa6d",
+                    "pipelineRef": { "kind": "pipeline", "resourceKey": "pipeline.sloane.service-renewal-workflow" },
                     "transitionId": "to_contract_read",
                     "expectedFromStageId": "intake",
                     "expectedToStageId": "contract_read",
@@ -209,7 +210,7 @@
                   "requiresApproval": true,
                   "execution": {
                     "type": "pipeline_transition",
-                    "pipelineId": "pl_e13390d8fa6d",
+                    "pipelineRef": { "kind": "pipeline", "resourceKey": "pipeline.sloane.service-renewal-workflow" },
                     "transitionId": "to_usage_summarized",
                     "expectedFromStageId": "contract_read",
                     "expectedToStageId": "usage_summarized",
@@ -226,7 +227,7 @@
                   "requiresApproval": true,
                   "execution": {
                     "type": "pipeline_transition",
-                    "pipelineId": "pl_e13390d8fa6d",
+                    "pipelineRef": { "kind": "pipeline", "resourceKey": "pipeline.sloane.service-renewal-workflow" },
                     "transitionId": "to_draft_ready",
                     "expectedFromStageId": "usage_summarized",
                     "expectedToStageId": "draft_ready",
@@ -247,5 +248,5 @@
       }
     ]
   },
-  "commitMessage": "Build Sloane household renewal Canvas workflow"
+  "commitMessage": "Convert Sloane household renewal workflow to schema v2 portable"
 }
