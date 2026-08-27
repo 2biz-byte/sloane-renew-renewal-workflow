@@ -3,7 +3,7 @@
   "structure": {
     "name": "Renew a household service (personal)",
     "actionName": "Renew a household service (personal)",
-    "actionIndex": 0,
+    "actionIndex": 1,
     "baseUrl": "",
     "screenshotEnabled": false,
     "parameters": {
@@ -15,16 +15,237 @@
         "step_number": 1,
         "stepId": "step-a0001",
         "action_type": "navigate",
-        "label": "Workflow Start",
-        "intent": "**Input:** Uses the persona command invocation context; no prior step variables are required.\n\n**Processing:** Initializes the Operator workflow context so the following compatibility action can delegate to the persona runtime.\n\n**Output:** No exported variables. The step succeeds when the workflow context is ready.",
+        "label": "Canvas Agent",
+        "intent": "**Input:** Uses the persona command invocation context.\n\n**Processing:** Initializes the browserless Operator context for the Sloane household renewal Canvas agent.\n\n**Output:** Operator context ready.",
         "comment": "Initialize the Operator workflow context.",
         "url": "",
         "value": "",
         "selectors": [],
         "disableBrowser": true,
-        "timestamp": 1787828618743
+        "timestamp": 1787828676000
+      },
+      {
+        "step_number": 2,
+        "stepId": "step-a0002",
+        "action_type": "persona_capability",
+        "label": "Gmail . read_contract",
+        "intent": "**Input:** Uses persona command context for the household renewal case.\n\n**Processing:** Triggers pipeline transition to_contract_read to read the renewal notice and contract terms for the service (e.g. Home internet, Northline Fiber). Uses Gmail if connected and a matching renewal mail exists; otherwise the seeded notice.\n\n**Output:** Renewal contract terms including current rate, proposed rate, hike, and contract end date.",
+        "personaCapabilityConfig": {
+          "schemaVersion": 1,
+          "kind": "canvas_task_execution",
+          "promptTemplate": "Review my {service_name} renewal and draft a negotiation email before the contract renews. {args}",
+          "execution": {
+            "type": "canvas_task_execution",
+            "canvas": {
+              "enabled": true,
+              "blueprintRef": "inline",
+              "humanApproval": {
+                "enabled": true
+              },
+              "taskTypes": [
+                {
+                  "id": "read_contract",
+                  "label": "Gmail . read_contract",
+                  "requiresApproval": true,
+                  "execution": {
+                    "type": "pipeline_transition",
+                    "pipelineId": "pl_e13390d8fa6d",
+                    "transitionId": "to_contract_read",
+                    "expectedFromStageId": "intake",
+                    "expectedToStageId": "contract_read",
+                    "operation": "start",
+                    "waitForCompletion": true
+                  }
+                }
+              ],
+              "playbook": {
+                "captureOnSuccess": true,
+                "allowSave": true,
+                "allowReplay": true
+              }
+            }
+          },
+          "canvasTask": {
+            "sequenceId": "canvas-sloane-renew",
+            "taskId": "read_contract",
+            "taskIndex": 1,
+            "taskCount": 3,
+            "terminal": false
+          }
+        },
+        "timestamp": 1787828676001
+      },
+      {
+        "step_number": 3,
+        "stepId": "step-a0003",
+        "action_type": "persona_capability",
+        "label": "Sheets . summarize_usage",
+        "intent": "**Input:** Renewal contract terms from step 2.\n\n**Processing:** Triggers pipeline transition to_usage_summarized to summarize monthly spend and usage for the service. Uses Google Sheets if connected; otherwise the six seeded months.\n\n**Output:** Monthly usage and spend summary (e.g. ~437 GB average at $59.99/mo).",
+        "personaCapabilityConfig": {
+          "schemaVersion": 1,
+          "kind": "canvas_task_execution",
+          "promptTemplate": "Review my {service_name} renewal and draft a negotiation email before the contract renews. {args}",
+          "execution": {
+            "type": "canvas_task_execution",
+            "canvas": {
+              "enabled": true,
+              "blueprintRef": "inline",
+              "humanApproval": {
+                "enabled": true
+              },
+              "taskTypes": [
+                {
+                  "id": "summarize_usage",
+                  "label": "Sheets . summarize_usage",
+                  "dependsOn": [
+                    "read_contract"
+                  ],
+                  "requiresApproval": true,
+                  "execution": {
+                    "type": "pipeline_transition",
+                    "pipelineId": "pl_e13390d8fa6d",
+                    "transitionId": "to_usage_summarized",
+                    "expectedFromStageId": "contract_read",
+                    "expectedToStageId": "usage_summarized",
+                    "operation": "advance",
+                    "waitForCompletion": true
+                  }
+                }
+              ],
+              "playbook": {
+                "captureOnSuccess": true,
+                "allowSave": true,
+                "allowReplay": true
+              }
+            }
+          },
+          "canvasTask": {
+            "sequenceId": "canvas-sloane-renew",
+            "taskId": "summarize_usage",
+            "taskIndex": 2,
+            "taskCount": 3,
+            "terminal": false
+          }
+        },
+        "timestamp": 1787828676002
+      },
+      {
+        "step_number": 4,
+        "stepId": "step-a0004",
+        "action_type": "persona_capability",
+        "label": "Gmail . draft_email",
+        "intent": "**Input:** Renewal contract terms and usage summary from steps 2 and 3.\n\n**Processing:** Triggers pipeline transition to_draft_ready to draft a negotiation email in Gmail using loyalty and competitor ($64.99) talking points. Creates a Gmail DRAFT only, never sends.\n\n**Output:** A negotiation email draft ready for review. Final result: Renewal brief created with negotiation points and an email draft.",
+        "personaCapabilityConfig": {
+          "schemaVersion": 1,
+          "kind": "canvas_task_execution",
+          "promptTemplate": "Review my {service_name} renewal and draft a negotiation email before the contract renews. {args}",
+          "execution": {
+            "type": "canvas_task_execution",
+            "canvas": {
+              "enabled": true,
+              "blueprintRef": "inline",
+              "humanApproval": {
+                "enabled": true
+              },
+              "taskTypes": [
+                {
+                  "id": "draft_email",
+                  "label": "Gmail . draft_email",
+                  "dependsOn": [
+                    "summarize_usage"
+                  ],
+                  "requiresApproval": true,
+                  "execution": {
+                    "type": "pipeline_transition",
+                    "pipelineId": "pl_e13390d8fa6d",
+                    "transitionId": "to_draft_ready",
+                    "expectedFromStageId": "usage_summarized",
+                    "expectedToStageId": "draft_ready",
+                    "operation": "advance",
+                    "waitForCompletion": true
+                  }
+                }
+              ],
+              "playbook": {
+                "captureOnSuccess": true,
+                "allowSave": true,
+                "allowReplay": true
+              }
+            }
+          },
+          "canvasTask": {
+            "sequenceId": "canvas-sloane-renew",
+            "taskId": "draft_email",
+            "taskIndex": 3,
+            "taskCount": 3,
+            "terminal": true,
+            "aggregateCanvas": {
+              "enabled": true,
+              "blueprintRef": "inline",
+              "humanApproval": {
+                "enabled": true
+              },
+              "taskTypes": [
+                {
+                  "id": "read_contract",
+                  "label": "Gmail . read_contract",
+                  "requiresApproval": true,
+                  "execution": {
+                    "type": "pipeline_transition",
+                    "pipelineId": "pl_e13390d8fa6d",
+                    "transitionId": "to_contract_read",
+                    "expectedFromStageId": "intake",
+                    "expectedToStageId": "contract_read",
+                    "operation": "start",
+                    "waitForCompletion": true
+                  }
+                },
+                {
+                  "id": "summarize_usage",
+                  "label": "Sheets . summarize_usage",
+                  "dependsOn": [
+                    "read_contract"
+                  ],
+                  "requiresApproval": true,
+                  "execution": {
+                    "type": "pipeline_transition",
+                    "pipelineId": "pl_e13390d8fa6d",
+                    "transitionId": "to_usage_summarized",
+                    "expectedFromStageId": "contract_read",
+                    "expectedToStageId": "usage_summarized",
+                    "operation": "advance",
+                    "waitForCompletion": true
+                  }
+                },
+                {
+                  "id": "draft_email",
+                  "label": "Gmail . draft_email",
+                  "dependsOn": [
+                    "summarize_usage"
+                  ],
+                  "requiresApproval": true,
+                  "execution": {
+                    "type": "pipeline_transition",
+                    "pipelineId": "pl_e13390d8fa6d",
+                    "transitionId": "to_draft_ready",
+                    "expectedFromStageId": "usage_summarized",
+                    "expectedToStageId": "draft_ready",
+                    "operation": "advance",
+                    "waitForCompletion": true
+                  }
+                }
+              ],
+              "playbook": {
+                "captureOnSuccess": true,
+                "allowSave": true,
+                "allowReplay": true
+              }
+            }
+          }
+        },
+        "timestamp": 1787828676003
       }
     ]
   },
-  "commitMessage": "Initial migration from database"
+  "commitMessage": "Build Sloane household renewal Canvas workflow"
 }
