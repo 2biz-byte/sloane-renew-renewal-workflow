@@ -1,102 +1,21 @@
 {
   "schemaVersion": 2,
-  "commandKey": "renew-a-household-service-personal",
+  "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
   "trigger": "renew-a-household-service-personal",
   "label": "Renew a household service (personal)",
+  "updatedAt": 1787836440309,
   "nodes": [
     {
-      "id": "slash:renew-a-household-service-personal",
+      "id": "slash:cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
       "kind": "slash",
       "label": "/renew-a-household-service-personal",
       "description": "Review a household service renewal (e.g. home internet) and draft a negotiation email before the contract renews. Drafts only, never sends.",
       "meta": {
-        "commandKey": "renew-a-household-service-personal",
+        "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
         "trigger": "renew-a-household-service-personal"
       }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:read_contract",
-      "kind": "canvas_task",
-      "label": "Gmail . read_contract",
-      "description": "Canvas task",
-      "meta": {
-        "taskId": "read_contract",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 2,
-        "stepId": "step-a0002",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "executionType": "pipeline_transition",
-        "requiresApproval": true
-      }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:summarize_usage",
-      "kind": "canvas_task",
-      "label": "Sheets . summarize_usage",
-      "description": "Canvas task",
-      "meta": {
-        "taskId": "summarize_usage",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 3,
-        "stepId": "step-a0003",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "executionType": "pipeline_transition",
-        "requiresApproval": true,
-        "dependsOn": [
-          "read_contract"
-        ]
-      }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:draft_email",
-      "kind": "canvas_task",
-      "label": "Gmail . draft_email",
-      "description": "Canvas task",
-      "meta": {
-        "taskId": "draft_email",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 4,
-        "stepId": "step-a0004",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "executionType": "pipeline_transition",
-        "requiresApproval": true,
-        "dependsOn": [
-          "summarize_usage"
-        ]
-      }
     }
   ],
-  "edges": [
-    {
-      "id": "edge:slash:renew-a-household-service-personal:executes:canvas:renew-a-household-service-personal:read_contract:1",
-      "source": "slash:renew-a-household-service-personal",
-      "target": "canvas:renew-a-household-service-personal:read_contract",
-      "relation": "executes"
-    },
-    {
-      "id": "edge:canvas:renew-a-household-service-personal:read_contract:depends_on:canvas:renew-a-household-service-personal:summarize_usage:2",
-      "source": "canvas:renew-a-household-service-personal:read_contract",
-      "target": "canvas:renew-a-household-service-personal:summarize_usage",
-      "relation": "depends_on"
-    },
-    {
-      "id": "edge:canvas:renew-a-household-service-personal:summarize_usage:depends_on:canvas:renew-a-household-service-personal:draft_email:3",
-      "source": "canvas:renew-a-household-service-personal:summarize_usage",
-      "target": "canvas:renew-a-household-service-personal:draft_email",
-      "relation": "depends_on"
-    }
-  ],
+  "edges": [],
   "relatedTodoIds": []
 }
