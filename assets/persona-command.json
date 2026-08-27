@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "kind": "persona_slash_command",
+  "pageId": "9beee179-c29d-4d19-9899-8964f57827a1",
+  "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
+  "operatorActionId": "6a90198a9334d064acf7c5de",
+  "commandTrigger": "renew-a-household-service-personal",
+  "commandLabel": "Renew a household service (personal)",
+  "commandDescription": "Review a household service renewal (e.g. home internet) and draft a negotiation email before the contract renews. Drafts only, never sends.",
+  "personaRepository": {
+    "remoteUrl": "https://github.com/2biz-byte/sloane-persona.git",
+    "defaultBranch": "main",
+    "configPath": "assets/chat-config.json",
+    "owns": [
+      "command trigger",
+      "label and description",
+      "enabled state",
+      "presentation",
+      "Operator action reference"
+    ]
+  },
+  "workflowRepository": {
+    "remoteUrl": "https://github.com/2biz-byte/sloane-renew-renewal-workflow.git",
+    "defaultBranch": "main",
+    "workflowPath": "assets/workflow.json",
+    "slashConnectionsPath": "assets/slash-connections.json",
+    "owns": [
+      "executable workflow steps",
+      "prompts and runtime configuration",
+      "inputs and outputs",
+      "generated child skills",
+      "slash connection debug graph",
+      "persona-command authoring skill"
+    ]
+  }
+}

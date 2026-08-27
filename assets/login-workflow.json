@@ -1,0 +1,16 @@
+{
+  "actionId": "6a90198a9334d064acf7c5de",
+  "structure": {
+    "name": "Renew a household service (personal)",
+    "actionName": "Renew a household service (personal)",
+    "actionIndex": 0,
+    "baseUrl": "",
+    "screenshotEnabled": false,
+    "parameters": {
+      "execute": []
+    },
+    "groups": [],
+    "steps": []
+  },
+  "commitMessage": "Initial login auth sidecar"
+}
