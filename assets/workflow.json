@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "resourceKey": "workflow.sloane.renew-a-household-service-personal",
+  "resourceKey": "workflow.sloane-household-procurement-ai-persona.renew-a-household-service-personal",
   "structure": {
     "name": "Renew a household service (personal)",
     "actionName": "Renew a household service (personal)",
@@ -26,7 +26,7 @@
         "action_type": "persona_capability",
         "stepId": "step-cab11",
         "timestamp": 1787828618744,
-        "label": "Gmail — read_contract",
+        "label": "Gmail â€” read_contract",
         "intent": "**Input:** Existing renewal case SLOANE-RENEW-001 at intake.\n\n**Processing:** Opens the first Canvas card for an explicitly approved, read-only Gmail.read_contract operation on the renewal notice and contract terms. When Gmail is not intentionally connected, the card states it is using the seeded Northline Fiber notice rather than claiming a live read. Approval advances the existing case from intake to contract_read.\n\n**Output:** Renewal notice and contract terms persisted on the case advanced to contract_read. No email is sent or modified.",
         "personaCapabilityConfig": {
           "schemaVersion": 1,
@@ -45,8 +45,8 @@
               "taskTypes": [
                 {
                   "id": "read-contract",
-                  "label": "Gmail — read_contract",
-                  "description": "Gmail.read_contract — Read the home-internet renewal notice and current contract terms. For the mock fallback path, use the seeded SLOANE-RENEW-001 notice exactly: provider Northline Fiber, plan Home Gigabit, current $59.99/mo, proposed $89.99/mo (50% hike), contract end 2026-09-14, promo note 'First-year rate ending'. Clearly label the source as mock fallback when live Gmail has no match. Drafts only — never send or modify email.",
+                  "label": "Gmail â€” read_contract",
+                  "description": "Gmail.read_contract â€” Read the home-internet renewal notice and current contract terms. For the mock fallback path, use the seeded SLOANE-RENEW-001 notice exactly: provider Northline Fiber, plan Home Gigabit, current $59.99/mo, proposed $89.99/mo (50% hike), contract end 2026-09-14, promo note 'First-year rate ending'. Clearly label the source as mock fallback when live Gmail has no match. Drafts only â€” never send or modify email.",
                   "artifactType": "text_document",
                   "artifactPolicy": "none",
                   "requiresApproval": true,
@@ -55,7 +55,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "to_contract_read",
                     "expectedFromStageId": "intake",
@@ -88,7 +88,7 @@
         "action_type": "persona_capability",
         "stepId": "step-cab12",
         "timestamp": 1787828618745,
-        "label": "Sheets — summarize_usage",
+        "label": "Sheets â€” summarize_usage",
         "intent": "**Input:** The approved SLOANE-RENEW-001 Gmail card and persisted contract_read case.\n\n**Processing:** Opens the second Canvas card for an explicitly approved, read-only Sheets.summarize_usage operation on monthly spend and usage. The mock path uses the exact seeded six months (average ~437 GB at a flat $59.99) and the $64.99 competitor offer. Approval advances the same case from contract_read to usage_summarized.\n\n**Output:** Persisted usage_summarized case with monthly spend and usage. No sheet is modified and no email is sent.",
         "personaCapabilityConfig": {
           "schemaVersion": 1,
@@ -107,8 +107,8 @@
               "taskTypes": [
                 {
                   "id": "summarize-usage",
-                  "label": "Sheets — summarize_usage",
-                  "description": "Sheets.summarize_usage — Summarize monthly spend and usage. For the mock fallback path, use the exact seeded SLOANE-RENEW-001 usage history (six months, average ~437 GB at a flat $59.99) and competitor offer ($64.99/mo for a comparable plan). State it is using the seeded values unless a live Sheets connector is explicitly selected and approved. Drafts only — never write to Sheets.",
+                  "label": "Sheets â€” summarize_usage",
+                  "description": "Sheets.summarize_usage â€” Summarize monthly spend and usage. For the mock fallback path, use the exact seeded SLOANE-RENEW-001 usage history (six months, average ~437 GB at a flat $59.99) and competitor offer ($64.99/mo for a comparable plan). State it is using the seeded values unless a live Sheets connector is explicitly selected and approved. Drafts only â€” never write to Sheets.",
                   "artifactType": "text_document",
                   "artifactPolicy": "none",
                   "dependsOn": [
@@ -120,7 +120,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "to_usage_summarized",
                     "expectedFromStageId": "contract_read",
@@ -153,7 +153,7 @@
         "action_type": "persona_capability",
         "stepId": "step-cab13",
         "timestamp": 1787828618746,
-        "label": "Gmail — draft_email",
+        "label": "Gmail â€” draft_email",
         "intent": "**Input:** The approved usage_summarized case SLOANE-RENEW-001.\n\n**Processing:** Opens the third Canvas card to draft the negotiation email as a Gmail draft only. The draft uses the contract end 2026-09-14, the 50% hike to $89.99/mo, the ~437 GB average, and the $64.99 competitor talking point. The case stays at usage_summarized for review until approved. Improve revises the draft without sending (revise_draft).\n\n**Output:** A negotiation email draft (never sent) persisted for review while the case remains usage_summarized.",
         "personaCapabilityConfig": {
           "schemaVersion": 1,
@@ -172,8 +172,8 @@
               "taskTypes": [
                 {
                   "id": "draft-email",
-                  "label": "Gmail — draft_email",
-                  "description": "Gmail.draft_email — Draft the negotiation email for SLOANE-RENEW-001 with the contract end 2026-09-14, hike %, proposed monthly $89.99, and the $64.99 competitor talking point. Stay at usage_summarized for review until approved. Create a Gmail draft only — never send. Improve revises the draft without sending (revise_draft).",
+                  "label": "Gmail â€” draft_email",
+                  "description": "Gmail.draft_email â€” Draft the negotiation email for SLOANE-RENEW-001 with the contract end 2026-09-14, hike %, proposed monthly $89.99, and the $64.99 competitor talking point. Stay at usage_summarized for review until approved. Create a Gmail draft only â€” never send. Improve revises the draft without sending (revise_draft).",
                   "artifactType": "text_document",
                   "artifactPolicy": "none",
                   "dependsOn": [
@@ -185,7 +185,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "draft_email",
                     "expectedFromStageId": "usage_summarized",
@@ -195,7 +195,7 @@
                     "recovery": {
                       "improveTransitionId": "revise_draft",
                       "approvalLabels": {
-                        "improve": "Improve…"
+                        "improve": "Improveâ€¦"
                       }
                     }
                   }
@@ -256,7 +256,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "mark_draft_ready",
                     "expectedFromStageId": "usage_summarized",
@@ -292,8 +292,8 @@
               "taskTypes": [
                 {
                   "id": "read-contract",
-                  "label": "Gmail — read_contract",
-                  "description": "Gmail.read_contract — use the approved live read or explicitly identified SLOANE-RENEW-001 Northline Fiber notice.",
+                  "label": "Gmail â€” read_contract",
+                  "description": "Gmail.read_contract â€” use the approved live read or explicitly identified SLOANE-RENEW-001 Northline Fiber notice.",
                   "artifactType": "text_document",
                   "artifactPolicy": "none",
                   "requiresApproval": true,
@@ -302,7 +302,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "to_contract_read",
                     "expectedFromStageId": "intake",
@@ -313,8 +313,8 @@
                 },
                 {
                   "id": "summarize-usage",
-                  "label": "Sheets — summarize_usage",
-                  "description": "Sheets.summarize_usage — use the exact SLOANE-RENEW-001 six-month usage (average ~437 GB at a flat $59.99) and $64.99 competitor offer unless a live connector is approved.",
+                  "label": "Sheets â€” summarize_usage",
+                  "description": "Sheets.summarize_usage â€” use the exact SLOANE-RENEW-001 six-month usage (average ~437 GB at a flat $59.99) and $64.99 competitor offer unless a live connector is approved.",
                   "artifactType": "text_document",
                   "artifactPolicy": "none",
                   "dependsOn": [
@@ -326,7 +326,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "to_usage_summarized",
                     "expectedFromStageId": "contract_read",
@@ -337,8 +337,8 @@
                 },
                 {
                   "id": "draft-email",
-                  "label": "Gmail — draft_email",
-                  "description": "Gmail.draft_email — draft the negotiation email for SLOANE-RENEW-001 as a Gmail draft only. Never send. Keep at usage_summarized until approved; Improve revises (revise_draft).",
+                  "label": "Gmail â€” draft_email",
+                  "description": "Gmail.draft_email â€” draft the negotiation email for SLOANE-RENEW-001 as a Gmail draft only. Never send. Keep at usage_summarized until approved; Improve revises (revise_draft).",
                   "artifactType": "text_document",
                   "artifactPolicy": "none",
                   "dependsOn": [
@@ -350,7 +350,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "draft_email",
                     "expectedFromStageId": "usage_summarized",
@@ -360,7 +360,7 @@
                     "recovery": {
                       "improveTransitionId": "revise_draft",
                       "approvalLabels": {
-                        "improve": "Improve…"
+                        "improve": "Improveâ€¦"
                       }
                     }
                   }
@@ -380,7 +380,7 @@
                     "type": "pipeline_transition",
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     },
                     "transitionId": "mark_draft_ready",
                     "expectedFromStageId": "usage_summarized",
@@ -405,7 +405,7 @@
     "actionIndex": 0,
     "pipelineRef": {
       "kind": "pipeline",
-      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
     }
   },
   "commitMessage": "Repair workflow with contiguous Canvas task sequence (Gmail -> Sheets -> Gmail draft -> mark ready)"
