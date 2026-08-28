@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "resourceKey": "workflow.sloane-household-procurement-ai-persona.renew-a-household-service-personal",
+  "resourceKey": "workflow.sloane.renew-a-household-service-personal",
   "structure": {
     "name": "Renew a household service (personal)",
     "actionName": "Renew a household service (personal)",
@@ -28,7 +28,7 @@
     ],
     "pipelineRef": {
       "kind": "pipeline",
-      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
+      "resourceKey": "pipeline.sloane.service-renewal-workflow"
     }
   },
   "commitMessage": ""
