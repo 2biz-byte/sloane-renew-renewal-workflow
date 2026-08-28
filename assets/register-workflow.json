@@ -1,16 +1,17 @@
 {
-  "actionId": "6a90198a9334d064acf7c5de",
+  "schemaVersion": 2,
+  "resourceKey": "workflow.sloane.renew-a-household-service-personal",
   "structure": {
-    "name": "Renew a household service (personal)",
-    "actionName": "Renew a household service (personal)",
-    "actionIndex": 0,
-    "baseUrl": "",
-    "screenshotEnabled": false,
+    "name": "register authentication",
+    "steps": [],
     "parameters": {
       "execute": []
     },
-    "groups": [],
-    "steps": []
+    "baseUrl": "",
+    "actionIndex": 0,
+    "actionName": "register authentication",
+    "screenshotEnabled": false,
+    "groups": []
   },
-  "commitMessage": "Initial register auth sidecar"
+  "commitMessage": ""
 }
