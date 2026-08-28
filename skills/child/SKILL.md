@@ -1,6 +1,6 @@
 ---
 name: renew-a-household-service-personal-child
-description: Child execution skill for Renew a household service (personal). 1 steps, mode: browserless.
+description: Child execution skill for Renew a household service (personal). 5 steps, mode: browserless.
 type: child_skill
 ---
 
@@ -11,14 +11,18 @@ Execute the "Renew a household service (personal)" automation workflow.
 
 ## Operator Details
 - **Mode:** browserless
-- **Steps:** 1
+- **Steps:** 5
 - **Groups:** 0
 
 ## Step Summary
 
 | # | Action | Intent |
 |---|--------|--------|
-| 1 | navigate | Workflow Start |
+| 1 | navigate | Start Canvas service renewal review |
+| 2 | persona_capability | Gmail â€” read_contract |
+| 3 | persona_capability | Sheets â€” summarize_usage |
+| 4 | persona_capability | Gmail â€” draft_email |
+| 5 | persona_capability | Mark draft ready |
 
 ## Execution Notes
 - Steps execute sequentially by step_number
