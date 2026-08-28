@@ -3,7 +3,7 @@
   "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
   "trigger": "renew-a-household-service-personal",
   "label": "Renew a household service (personal)",
-  "updatedAt": 1787926197029,
+  "updatedAt": 1787926777482,
   "nodes": [
     {
       "id": "slash:cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
