@@ -1,6 +1,5 @@
 {
-  "schemaVersion": 2,
-  "resourceKey": "workflow.sloane.renew-a-household-service-personal",
+  "actionId": "6a90198a9334d064acf7c5de",
   "structure": {
     "name": "Renew a household service (personal)",
     "actionName": "Renew a household service (personal)",
@@ -14,22 +13,18 @@
     "steps": [
       {
         "step_number": 1,
-        "action_type": "navigate",
         "stepId": "step-a0001",
-        "timestamp": 1787828618743,
+        "action_type": "navigate",
         "label": "Workflow Start",
-        "intent": "**Input:** Uses the persona command invocation context; no prior step variables are required.\n\n**Processing:** Initializes the Operator workflow context so the following Canvas task sequence can delegate to the persona runtime.\n\n**Output:** No exported variables. The step succeeds when the workflow context is ready.",
+        "intent": "**Input:** Uses the persona command invocation context; no prior step variables are required.\n\n**Processing:** Initializes the Operator workflow context so the following compatibility action can delegate to the persona runtime.\n\n**Output:** No exported variables. The step succeeds when the workflow context is ready.",
+        "comment": "Initialize the Operator workflow context.",
         "url": "",
         "value": "",
         "selectors": [],
         "disableBrowser": true,
-        "readOnly": true
+        "timestamp": 1787828618743
       }
-    ],
-    "pipelineRef": {
-      "kind": "pipeline",
-      "resourceKey": "pipeline.sloane.service-renewal-workflow"
-    }
+    ]
   },
   "commitMessage": ""
 }
