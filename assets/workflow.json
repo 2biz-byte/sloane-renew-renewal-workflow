@@ -66,7 +66,7 @@
                     "waitForCompletion": true,
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 }
@@ -131,7 +131,7 @@
                     "waitForCompletion": true,
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 }
@@ -202,7 +202,7 @@
                     },
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 }
@@ -267,7 +267,7 @@
                     "waitForCompletion": true,
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 }
@@ -313,7 +313,7 @@
                     "waitForCompletion": true,
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 },
@@ -337,7 +337,7 @@
                     "waitForCompletion": true,
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 },
@@ -367,7 +367,7 @@
                     },
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 },
@@ -391,7 +391,7 @@
                     "waitForCompletion": true,
                     "pipelineRef": {
                       "kind": "pipeline",
-                      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+                      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
                     }
                   }
                 }
@@ -405,7 +405,7 @@
     "actionIndex": 0,
     "pipelineRef": {
       "kind": "pipeline",
-      "resourceKey": "pipeline.sloane.service-renewal-workflow"
+      "resourceKey": "pipeline.sloane-household-procurement-ai-persona.service-renewal-workflow"
     }
   },
   "commitMessage": ""
