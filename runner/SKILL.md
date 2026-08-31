@@ -79,17 +79,17 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 ```
 
 ## Key Learnings
-- Performance: Run durations remain stable (1.1s - 2.1s).
+- Performance: Run durations remain stable (1.1s - 2.1s), with the most recent run at 1.5s.
 - Browser Lifecycle: Intermittent "null reference" errors during browser closure (reading 'close') continue to occur; these are non-critical and do not impact task success.
 - Notification: Completion notifications are consistently dispatched at the end of the workflow.
 - Reliability: Interactive step recovery is consistently disabled; internal workflow state management is required for error handling.
 
 ## Run History
-- 3064754a | 2026-08-31 | completed
 - 3ab4a1c7 | 2026-08-31 | completed
 - aee94de7 | 2026-08-31 | completed
 - 0f52af01 | 2026-08-31 | completed
 - 61574f5c | 2026-08-31 | completed
+- a02a699d | 2026-08-31 | completed
 
 ## Resources
 
