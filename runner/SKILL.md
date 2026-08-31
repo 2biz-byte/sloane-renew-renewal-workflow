@@ -79,18 +79,18 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 ```
 
 ## Key Learnings
-- Performance: Execution duration remains stable, with recent runs exhibiting a slight downward trend in total duration (down to 1.7s).
-- Browser Lifecycle: The "Cannot read properties of null (reading 'close')" error during cleanup is a consistent, non-fatal artifact of the browser shutdown sequence.
-- Notification: Completion notification delivery remains stable and reliable.
-- Reliability: Interactive step recovery is consistently disabled; automation logic remains autonomous.
-- Stability: The workflow maintains high success rates; recent executions show no functional step failures.
+- Performance: Execution duration remains consistently optimized at approximately 1.7s across recent runs.
+- Browser Lifecycle: The "Cannot read properties of null (reading 'close')" error remains a recurring, harmless artifact during the post-execution cleanup phase.
+- Notification: System-level completion notifications are consistently triggered and delivered.
+- Reliability: The workflow continues to operate autonomously with interactive step recovery explicitly disabled.
+- Stability: The integration maintains high reliability with no functional step failures observed in the 5 most recent executions.
 
 ## Run History
-- 11365726 | 2026-08-31 | completed
 - e8a97a81 | 2026-08-31 | completed
 - 0d683dd6 | 2026-08-31 | completed
 - db75f3f3 | 2026-08-31 | completed
 - 091a343b | 2026-08-31 | completed
+- 4d0f2092 | 2026-08-31 | completed
 
 ## Resources
 
