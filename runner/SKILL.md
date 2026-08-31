@@ -79,17 +79,17 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 ```
 
 ## Key Learnings
-- Performance: Run durations remain stable (1.1s - 2.1s), with the most recent run at 1.4s.
-- Browser Lifecycle: Intermittent "null reference" errors during browser closure (reading 'close') continue to occur; these are non-critical and do not impact task success.
-- Notification: Completion notifications are consistently dispatched at the end of the workflow.
-- Reliability: Interactive step recovery is consistently disabled; internal workflow state management is required for error handling.
+- Performance: Run durations remain stable (1.4s), consistent with previous execution windows.
+- Browser Lifecycle: Non-critical "Cannot read properties of null (reading 'close')" errors during browser cleanup persist but do not impede workflow completion.
+- Notification: System completion notifications are reliably triggered upon terminal state.
+- Reliability: Interactive step recovery remains disabled; workflows should be designed to handle state transitions autonomously.
 
 ## Run History
-- aee94de7 | 2026-08-31 | completed
 - 0f52af01 | 2026-08-31 | completed
 - 61574f5c | 2026-08-31 | completed
 - a02a699d | 2026-08-31 | completed
 - c34a93c1 | 2026-08-31 | completed
+- d47a1f5c | 2026-08-31 | completed
 
 ## Resources
 
