@@ -78,3 +78,11 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 { "agentId": "9beee179-c29d-4d19-9899-8964f57827a1", "actionId": "6a90198a9334d064acf7c5de" }
 ```
 
+## Key Learnings
+- Performance: Run durations are consistently short (approx. 1.6s) for standard execution flows.
+- Browser Lifecycle: Occasional non-critical errors occur during browser closure (e.g., attempting to close an already null reference), which do not impact overall workflow success.
+- Notification: Completion notifications are consistently triggered at the end of the run sequence.
+- Reliability: Interactive step recovery is disabled by default; ensure workflow state management handles exceptions internally.
+
+## Run History
+- 15b2bc83 | 2026-08-31 | completed
