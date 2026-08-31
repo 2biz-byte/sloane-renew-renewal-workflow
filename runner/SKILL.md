@@ -86,11 +86,11 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 - Stability: The workflow maintains high success rates with zero step failures observed in recent executions.
 
 ## Run History
-- 355a699f | 2026-08-31 | completed
 - 2b8efd42 | 2026-08-31 | completed
 - 8519b6d9 | 2026-08-31 | completed
 - 11365726 | 2026-08-31 | completed
 - e8a97a81 | 2026-08-31 | completed
+- 0d683dd6 | 2026-08-31 | completed
 
 ## Resources
 
