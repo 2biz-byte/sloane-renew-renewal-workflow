@@ -1,16 +1,17 @@
 {
   "schemaVersion": 2,
-  "commandKey": "renew-a-household-service-personal",
+  "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
   "trigger": "renew-a-household-service-personal",
   "label": "Renew a household service (personal)",
+  "updatedAt": 1788175243953,
   "nodes": [
     {
-      "id": "slash:renew-a-household-service-personal",
+      "id": "slash:cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
       "kind": "slash",
       "label": "/renew-a-household-service-personal",
       "description": "Review a household service renewal (e.g. home internet) and draft a negotiation email before the contract renews. Drafts only, never sends.",
       "meta": {
-        "commandKey": "renew-a-household-service-personal",
+        "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
         "trigger": "renew-a-household-service-personal"
       }
     }
