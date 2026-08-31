@@ -17,8 +17,8 @@
     {
       "id": "canvas:renew-a-household-service-personal:read-contract",
       "kind": "canvas_task",
-      "label": "Gmail â€” read_contract",
-      "description": "Gmail.read_contract â€” Read the home-internet renewal notice and current contract terms. For the mock fallback path, use the seeded SLOANE-RENEW-001 notice exactly: provider Northline Fiber, plan Home Gigabit, current $59.99/mo, proposed $89.99/mo (50% hike), contract end 2026-0",
+      "label": "Gmail — read_contract",
+      "description": "Gmail.read_contract — Read the home-internet renewal notice and current contract terms. For the mock fallback path, use the seeded SLOANE-RENEW-001 notice exactly: provider Northline Fiber, plan Home Gigabit, current $59.99/mo, proposed $89.99/mo (50% hike), contract end 2026-09-",
       "meta": {
         "taskId": "read-contract",
         "actionType": "persona_capability",
@@ -37,8 +37,8 @@
     {
       "id": "canvas:renew-a-household-service-personal:summarize-usage",
       "kind": "canvas_task",
-      "label": "Sheets â€” summarize_usage",
-      "description": "Sheets.summarize_usage â€” Summarize monthly spend and usage. For the mock fallback path, use the exact seeded SLOANE-RENEW-001 usage history (six months, average ~437 GB at a flat $59.99) and competitor offer ($64.99/mo for a comparable plan). State it is using the seeded values",
+      "label": "Sheets — summarize_usage",
+      "description": "Sheets.summarize_usage — Summarize monthly spend and usage. For the mock fallback path, use the exact seeded SLOANE-RENEW-001 usage history (six months, average ~437 GB at a flat $59.99) and competitor offer ($64.99/mo for a comparable plan). State it is using the seeded values u",
       "meta": {
         "taskId": "summarize-usage",
         "actionType": "persona_capability",
@@ -60,8 +60,8 @@
     {
       "id": "canvas:renew-a-household-service-personal:draft-email",
       "kind": "canvas_task",
-      "label": "Gmail â€” draft_email",
-      "description": "Gmail.draft_email â€” Draft the negotiation email for SLOANE-RENEW-001 with the contract end 2026-09-14, hike %, proposed monthly $89.99, and the $64.99 competitor talking point. Stay at usage_summarized for review until approved. Create a Gmail draft only â€” never send. Improve",
+      "label": "Gmail — draft_email",
+      "description": "Gmail.draft_email — Draft the negotiation email for SLOANE-RENEW-001 with the contract end 2026-09-14, hike %, proposed monthly $89.99, and the $64.99 competitor talking point. Stay at usage_summarized for review until approved. Create a Gmail draft only — never send. Improve rev",
       "meta": {
         "taskId": "draft-email",
         "actionType": "persona_capability",
