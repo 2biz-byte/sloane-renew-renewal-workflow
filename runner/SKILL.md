@@ -79,7 +79,7 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 ```
 
 ## Key Learnings
-- Performance: Run duration returned to baseline (1.6s) following the transient latency spike observed previously.
+- Performance: Run duration has stabilized back to a 1.0s baseline, showing improvement over the previous 6.9s latency spike.
 - Browser Lifecycle: Non-critical "Cannot read properties of null (reading 'close')" errors during browser cleanup persist but do not impede workflow completion.
 - Notification: System completion notifications are reliably triggered upon terminal state.
 - Reliability: Interactive step recovery remains disabled; workflows should be designed to handle state transitions autonomously.
@@ -89,7 +89,7 @@ POST https://gabrieloperator.com/api/automation/resume/{runId}
 - c34a93c1 | 2026-08-31 | completed
 - d47a1f5c | 2026-08-31 | completed
 - 355a699f | 2026-08-31 | completed
-- 2b519175 | 2026-08-31 | completed
+- 2b8efd42 | 2026-08-31 | completed
 
 ## Resources
 
