@@ -1,133 +1,21 @@
 {
   "schemaVersion": 2,
-  "commandKey": "renew-a-household-service-personal",
+  "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
   "trigger": "renew-a-household-service-personal",
   "label": "Renew a household service (personal)",
+  "updatedAt": 1788173073474,
   "nodes": [
     {
-      "id": "slash:renew-a-household-service-personal",
+      "id": "slash:cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
       "kind": "slash",
       "label": "/renew-a-household-service-personal",
       "description": "Review a household service renewal (e.g. home internet) and draft a negotiation email before the contract renews. Drafts only, never sends.",
       "meta": {
-        "commandKey": "renew-a-household-service-personal",
+        "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
         "trigger": "renew-a-household-service-personal"
       }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:read-contract",
-      "kind": "canvas_task",
-      "label": "Gmail — read_contract",
-      "description": "Gmail.read_contract — Read the home-internet renewal notice and current contract terms. For the mock fallback path, use the seeded SLOANE-RENEW-001 notice exactly: provider Northline Fiber, plan Home Gigabit, current $59.99/mo, proposed $89.99/mo (50% hike), contract end 2026-09-",
-      "meta": {
-        "taskId": "read-contract",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 2,
-        "stepId": "step-cab11",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "artifactType": "text_document",
-        "executionType": "pipeline_transition",
-        "requiresApproval": true
-      }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:summarize-usage",
-      "kind": "canvas_task",
-      "label": "Sheets — summarize_usage",
-      "description": "Sheets.summarize_usage — Summarize monthly spend and usage. For the mock fallback path, use the exact seeded SLOANE-RENEW-001 usage history (six months, average ~437 GB at a flat $59.99) and competitor offer ($64.99/mo for a comparable plan). State it is using the seeded values u",
-      "meta": {
-        "taskId": "summarize-usage",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 3,
-        "stepId": "step-cab12",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "artifactType": "text_document",
-        "executionType": "pipeline_transition",
-        "requiresApproval": true,
-        "dependsOn": [
-          "read-contract"
-        ]
-      }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:draft-email",
-      "kind": "canvas_task",
-      "label": "Gmail — draft_email",
-      "description": "Gmail.draft_email — Draft the negotiation email for SLOANE-RENEW-001 with the contract end 2026-09-14, hike %, proposed monthly $89.99, and the $64.99 competitor talking point. Stay at usage_summarized for review until approved. Create a Gmail draft only — never send. Improve rev",
-      "meta": {
-        "taskId": "draft-email",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 4,
-        "stepId": "step-cab13",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "artifactType": "text_document",
-        "executionType": "pipeline_transition",
-        "requiresApproval": true,
-        "dependsOn": [
-          "summarize-usage"
-        ]
-      }
-    },
-    {
-      "id": "canvas:renew-a-household-service-personal:mark-draft-ready",
-      "kind": "canvas_task",
-      "label": "Mark draft ready",
-      "description": "After the approved negotiation draft, advance the case from usage_summarized to draft_ready. No email is sent and no plan is changed.",
-      "meta": {
-        "taskId": "mark-draft-ready",
-        "actionType": "persona_capability",
-        "capabilityKind": "canvas_task_execution",
-        "stepNumber": 5,
-        "stepId": "step-cab14",
-        "workflowRef": {
-          "kind": "workflow",
-          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
-        },
-        "artifactType": "text_document",
-        "executionType": "pipeline_transition",
-        "dependsOn": [
-          "draft-email"
-        ]
-      }
     }
   ],
-  "edges": [
-    {
-      "id": "edge:slash:renew-a-household-service-personal:executes:canvas:renew-a-household-service-personal:read-contract:1",
-      "source": "slash:renew-a-household-service-personal",
-      "target": "canvas:renew-a-household-service-personal:read-contract",
-      "relation": "executes"
-    },
-    {
-      "id": "edge:canvas:renew-a-household-service-personal:read-contract:depends_on:canvas:renew-a-household-service-personal:summarize-usage:2",
-      "source": "canvas:renew-a-household-service-personal:read-contract",
-      "target": "canvas:renew-a-household-service-personal:summarize-usage",
-      "relation": "depends_on"
-    },
-    {
-      "id": "edge:canvas:renew-a-household-service-personal:summarize-usage:depends_on:canvas:renew-a-household-service-personal:draft-email:3",
-      "source": "canvas:renew-a-household-service-personal:summarize-usage",
-      "target": "canvas:renew-a-household-service-personal:draft-email",
-      "relation": "depends_on"
-    },
-    {
-      "id": "edge:canvas:renew-a-household-service-personal:draft-email:depends_on:canvas:renew-a-household-service-personal:mark-draft-ready:4",
-      "source": "canvas:renew-a-household-service-personal:draft-email",
-      "target": "canvas:renew-a-household-service-personal:mark-draft-ready",
-      "relation": "depends_on"
-    }
-  ],
+  "edges": [],
   "relatedTodoIds": []
 }
