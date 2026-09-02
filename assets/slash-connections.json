@@ -1,21 +1,133 @@
 {
   "schemaVersion": 2,
-  "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
+  "commandKey": "renew-a-household-service-personal",
   "trigger": "renew-a-household-service-personal",
   "label": "Renew a household service (personal)",
-  "updatedAt": 1788177690597,
   "nodes": [
     {
-      "id": "slash:cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
+      "id": "slash:renew-a-household-service-personal",
       "kind": "slash",
       "label": "/renew-a-household-service-personal",
       "description": "Review a household service renewal (e.g. home internet) and draft a negotiation email before the contract renews. Drafts only, never sends.",
       "meta": {
-        "commandId": "cmd_02997294-7ccb-47fd-975a-31612f3e4a7f",
+        "commandKey": "renew-a-household-service-personal",
         "trigger": "renew-a-household-service-personal"
+      }
+    },
+    {
+      "id": "canvas:renew-a-household-service-personal:read-contract",
+      "kind": "canvas_task",
+      "label": "Gmail — read renewal notice",
+      "description": "Gmail.read_contract — New renewal notice. For the mock path, use case SLOANE-RENEW-001, Northline Fiber, Home Gigabit, $59.99 → $89.99, hike 50%, contract end 2026-09-14, competitor $64.99, promo \"First-year rate ending\". Never send or modify email.",
+      "meta": {
+        "taskId": "read-contract",
+        "actionType": "persona_capability",
+        "capabilityKind": "canvas_task_execution",
+        "stepNumber": 2,
+        "stepId": "step-sl101",
+        "workflowRef": {
+          "kind": "workflow",
+          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
+        },
+        "artifactType": "text_document",
+        "executionType": "pipeline_transition",
+        "requiresApproval": true
+      }
+    },
+    {
+      "id": "canvas:renew-a-household-service-personal:summarize-usage",
+      "kind": "canvas_task",
+      "label": "Sheets — summarize usage",
+      "description": "Sheets.summarize_usage — Monthly spend and usage. For the mock path, use SLOANE-RENEW-001, usage_history: 2026-03,412,59.99;2026-04,438,59.99;2026-05,401,59.99;2026-06,455,59.99;2026-07,470,59.99;2026-08,448,59.99. Never write to Sheets.",
+      "meta": {
+        "taskId": "summarize-usage",
+        "actionType": "persona_capability",
+        "capabilityKind": "canvas_task_execution",
+        "stepNumber": 3,
+        "stepId": "step-sl102",
+        "workflowRef": {
+          "kind": "workflow",
+          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
+        },
+        "artifactType": "text_document",
+        "executionType": "pipeline_transition",
+        "requiresApproval": true,
+        "dependsOn": [
+          "read-contract"
+        ]
+      }
+    },
+    {
+      "id": "canvas:renew-a-household-service-personal:draft-email",
+      "kind": "canvas_task",
+      "label": "Gmail — draft negotiation",
+      "description": "Draft a negotiation email to Northline Fiber referencing competitor offer $64.99, 50% hike, promo expiry, and usage history. Stay at usage_summarized until approved. Never send. Improve lives here.",
+      "meta": {
+        "taskId": "draft-email",
+        "actionType": "persona_capability",
+        "capabilityKind": "canvas_task_execution",
+        "stepNumber": 4,
+        "stepId": "step-sl103",
+        "workflowRef": {
+          "kind": "workflow",
+          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
+        },
+        "artifactType": "text_document",
+        "executionType": "pipeline_transition",
+        "requiresApproval": true,
+        "dependsOn": [
+          "summarize-usage"
+        ]
+      }
+    },
+    {
+      "id": "canvas:renew-a-household-service-personal:mark-ready",
+      "kind": "canvas_task",
+      "label": "Commit approved draft",
+      "description": "Advance the approved case from usage_summarized to draft_ready. Never send an email.",
+      "meta": {
+        "taskId": "mark-ready",
+        "actionType": "persona_capability",
+        "capabilityKind": "canvas_task_execution",
+        "stepNumber": 5,
+        "stepId": "step-sl104",
+        "workflowRef": {
+          "kind": "workflow",
+          "resourceKey": "workflow.sloane.renew-a-household-service-personal"
+        },
+        "artifactType": "text_document",
+        "executionType": "pipeline_transition",
+        "dependsOn": [
+          "draft-email"
+        ]
       }
     }
   ],
-  "edges": [],
+  "edges": [
+    {
+      "id": "edge:slash:renew-a-household-service-personal:executes:canvas:renew-a-household-service-personal:read-contract:1",
+      "source": "slash:renew-a-household-service-personal",
+      "target": "canvas:renew-a-household-service-personal:read-contract",
+      "relation": "executes"
+    },
+    {
+      "id": "edge:canvas:renew-a-household-service-personal:read-contract:depends_on:canvas:renew-a-household-service-personal:summarize-usage:2",
+      "source": "canvas:renew-a-household-service-personal:read-contract",
+      "target": "canvas:renew-a-household-service-personal:summarize-usage",
+      "relation": "depends_on"
+    },
+    {
+      "id": "edge:canvas:renew-a-household-service-personal:summarize-usage:depends_on:canvas:renew-a-household-service-personal:draft-email:3",
+      "source": "canvas:renew-a-household-service-personal:summarize-usage",
+      "target": "canvas:renew-a-household-service-personal:draft-email",
+      "relation": "depends_on"
+    },
+    {
+      "id": "edge:canvas:renew-a-household-service-personal:draft-email:depends_on:canvas:renew-a-household-service-personal:mark-ready:4",
+      "source": "canvas:renew-a-household-service-personal:draft-email",
+      "target": "canvas:renew-a-household-service-personal:mark-ready",
+      "relation": "depends_on"
+    }
+  ],
   "relatedTodoIds": []
 }
